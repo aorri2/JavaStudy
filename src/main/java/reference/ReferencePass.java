@@ -4,18 +4,16 @@ public class ReferencePass {
     public static void main(String[] args) {
         ReferencePass reference = new ReferencePass();
         reference.callByReference();
-    }
-
-    class MemberDto {
-        String name;
-
-        public MemberDto(String name) {
-            this.name = name;
-        }
+        MemberDto memberDto1 = MemberDto.getInstance();
+        MemberDto memberDto2 = MemberDto.getInstance();
+        memberDto1.name = "lee";
+        System.out.println(memberDto2.name);
+        memberDto2.name = "park";
+        System.out.println(memberDto1.name);
     }
 
     private void callByReference() {
-        MemberDto member = new MemberDto("Sangmin");
+        MemberDto member = MemberDto.forName("sangmin");
         System.out.println("before callByReference");
         System.out.println("member.name=" + member.name);
         passByReference(member);
